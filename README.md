@@ -1,5 +1,7 @@
 # Vehicle Loan Application
 
+![Maintained by swetangii](https://img.shields.io/badge/maintained%20by-swetangii-blue)
+
 A full-stack web application for managing vehicle loans, customer applications, loan approvals, and EMI tracking. Built with **React** on the frontend and **Node.js / Express / MongoDB** on the backend.
 
 ---

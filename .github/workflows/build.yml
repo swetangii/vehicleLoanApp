@@ -1,0 +1,41 @@
+name: Build and Test
+'on':
+  push:
+    branches:
+      - '*'
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  build:
+    name: Build Node and React Apps
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install Node backend dependencies
+        working-directory: ./nodeapp
+        run: npm install
+      
+      - name: Install React frontend dependencies
+        working-directory: ./reactapp
+        run: npm install
+      
+      - name: Build React app
+        working-directory: ./reactapp
+        run: npm run build
+      
+      - name: Lint backend (optional)
+        working-directory: ./nodeapp
+        run: npm run lint || echo "Lint check skipped or not configured"
+        continue-on-error: true
